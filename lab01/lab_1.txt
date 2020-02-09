@@ -1,0 +1,41 @@
+Lab 1: Introduction
+CS344
+Ridge DeJong
+2/8/20
+
+Is the GPS problem solver implemented as a class or as a function?
+The GPS is a function, with other functions also defined to help it out.
+
+The solver requires initial states, goal states and operators. Of what type are these objects?
+These objects are Lists, composed of individual states and moves.
+
+Is the mechanism recursive? If so, how does it implement its recursion?
+Yes, "achieve_all" calls "achieve" which calls "apply_operator" which calls "achieve_all" again.
+It uses a goal stack to recursively try to get to the goal state from a specific state (meet preconditions).
+
+What famous puzzle does this code model and what are the rules of that puzzle? Does the code faithfully implement the puzzle?
+This is modelled after the "Monkey and Bananas Problem".
+The rules are that there is a monkey in a room, there are bananas hanging from the ceiling but are too high to reach,
+and there is a chair and a stick in the corner, which if used correctly would enable the monkey to reach the bananas.
+This code does a pretty good job of implementing the problem because the monkey must move the chair,
+but one difference here is that the monkey must drop the ball to grab the bananas instead of using a stick to knock them down.
+
+How does the GPS mechanism solve the problem? Be prepared to specify this in detail. You can use the logging feature to print a trace of the mechanism’s deliberations.
+It looks at the goal state (not hungry) and searches for what it must do in order to achieve that state (eat bananas).
+It continues to recursively work backwards (has bananas, grasp bananas, at bananas...) until it arrives at the given initial state.
+Then, it comes out of the recursion by choosing the order of actions it must perform before arriving at the goal state.
+Still, on the way out of the recursion, not all of the preconditions will be immediately met, so it might have to do more
+recursion to reach every state on the way to the goal state
+
+Is this code artificially intelligent? If so, which definition (or definitions) of AI from the text does it satisfy?
+This code is artificially intelligent under the definition of Acting Humanly.
+Kurtweil defines AI as "The art of creating machines that perform functions that require intelligence
+when performed by people", and Rich and Knight define it as "The study of how to make computers do
+things at which, at the moment, people are better."
+These definitions apply here because a human could easily know to move a chair and drop a ball to reach the bananas,
+and the code is just trying to make the same decisions that a human would make.
+
+Would a monkey who/that solves the problem in the real world be displaying intelligence?
+I would say the monkey is displaying a degree of intelligence because it uses logic and reasoning to combine the skills it knows
+and understand the order it needs to perform the tasks. It then connects its logic and body by physically performing the necessary
+skills in the correct order, resulting in the goal state.
