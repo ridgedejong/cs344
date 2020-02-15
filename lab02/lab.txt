@@ -1,0 +1,83 @@
+Lab 2: Local Search
+CS344
+Ridge DeJong
+2/14/20
+
+Which of the local search algorithms solves the problem? How well does each algorithm do?
+Both the Hill-climbing and Simulated annealing algorithms solve the problem, and both do the best by each finding the max value.
+
+Which algorithm works more quickly?
+Both algorithms work very quickly, but hill-climbing should be faster because it will go straight to the peak without any chance of
+jumping around like simulated annealing.
+
+Does the starting value for x make any difference? Why or why not?
+The starting value for x doesn't matter because there are no local maxima, so neither algorithm can get fooled by a peak that isn't the max.
+
+What affect does changing the delta step value make on each algorithm? Why?
+Hill-climbing search - small delta has minimal impact on solution, delta bigger than 1 shows noticable variance.
+Simulated annealing - delta 0.1 or smaller, or delta greater than 1 both show noticable variance.
+Hill-climbing's solution is inaccurate with a larger delta because it jumps over the max.
+Simulated annealing's solution is inaccurate because of it's time limit. If delta is too small it runs out of time,
+and if delta is too large it skips over the max.
+
+What is the purpose of the exp_schedule() method in the simulated annealing function call?
+This is the exponential function that determines the probability of making a bad move anyway. It starts with a higher
+probability at the beginning, but as the search continues, the chance to make a bad move gets small.
+
+How do each of the algorithms do on this problem space? Why?
+Both algorithms do not perform well on this problem space. The hill-climbing algorithm simply climbs to the nearest
+local maximum and stops, and the simulated annealing algorithm does almost the same thing as hill-climbing, except
+of that small chance that it chooses the worse neighbor. However, even if it makes a bad move and goes down a hill,
+the next couple moves will take it back up the hill where it came from, resulting in a solution very similar to
+hill-climbing (exact same if given enough time).
+
+Does the starting value make any difference here?
+The starting value has a huge impact because both algorithms will end up on or near the closest local maximum.
+Neither one has the ability to jump around (random restart) in order to test other hills.
+
+Does modifying the step size (i.e., delta) affect the operation of the two algorithms? Why or why not?
+For hill-climbing, delta simply determines how accurate the solution will be to a local maximum (smaller delta allows
+it to be more precise). For simulated annealing (with a constant time limit), a larger delta gives a better solution than
+a smaller one because a small delta causes it to get stuck trying to accurately find a local maximum, while the bigger
+delta allows it to jump over more hills to find higher ones.
+
+What are the maximum and minimum possible values here, and how do the two algorithms score with respect to them?
+The minimum value here is 0, and the maximum value is 30. If there is a small delta then both algorithms will stay within
+this range because they end up on the nearest local maximum. However, with a bigger delta both algorithms end up outside
+of this range because the steps are big enough for them to jump over hills and get bigger and bigger.
+
+How does each algorithm do with these restarts? Why?
+Both algorithms consistently give the correct solution, and both do so very quickly. The overall process for each is
+fast because each of them can evaluate the nearest local maximum very quickly, so they quickly know if they need to
+restart, and then they quickly evaluate another local maximum and this continues until they find the global maximum.
+
+What are the average values of the runs for each of the algorithms?
+On average, both algorithms give a solution of x=30 with a value of 29.64. But looking at the average values on the
+way to this solution, the hill-climbing solution usually has an average value between 12-17, which makes sense because
+it is more dependent on the initial value which is a random number between 0 and 30. The simulated annealing usually
+has an average value between 19 and 22, which again makes sense because while it's given a random initial state, it will
+often end with a solution that is higher than the nearest local maximum, therefore bringing up the average.
+
+If one of the algorithms does better, explain why; if not, explain why not.
+If a single algorithm had to be picked as the best it would be simulated annealing because its ability to jump around
+more allows it to have a better chance of reaching the global maximum, therefore reducing the required number of restarts.
+Yet, since each restart is random, the hill-climbing algorithm will occasionally reach the global maximum faster than
+simulated annealing because it guesses a good initial point.
+
+For which algorithm does beam search make the most sense?
+This would make the most sense with hill-climbing because the point of local beam search is to quickly evaluate different
+sections of the data, and hill-climbing could do this quickly while simulated annealing would do too much; it would
+try to find an ideal solution which isn't necessary. Rather, the point is to find the different local maxima until the
+global maximum is found, and hill-climbing is perfect for this. However, a counterpoint to this would be that simulated
+annealing would do a better job at not getting all of the searchers stuck in the same region of a local maximum.
+
+How many solutions could you maintain with reasonable space and time constraints?
+With these constraints, the number of solutions maintained would depend on the number of threads that the
+computer can run in parallel, which then depends on the hardware.
+
+How would you modify the code to implement beam search? How is it different from random restarts, if at all?
+I would initialize 8 or 10 threads to perform a hill-climbing search, and then while the maximum is not found, select
+the 8 to 10 best successors from the complete list and repeat. This is different from random restarts because it's not
+only in parallel instead of sequential, but also the searches are not independent of one another. Local beam search
+has the different threads communicate useful data with each other so that bad/low sections of the data are left behind
+and more searches can be done in areas that seem to be more promising.
