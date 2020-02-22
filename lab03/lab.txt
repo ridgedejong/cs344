@@ -1,0 +1,91 @@
+Lab 3: Constraint Satisfaction
+CS344
+Ridge DeJong
+2/22/20
+
+Exercise 3.1
+Which algorithms work (in a timely manner) and which don’t? Explain your results in terms of the capabilities
+(and implementations) of the algorithms and nature of the problems.
+--The depth first graph search only works in a timely manner on the already solved sudoku. This is because the algorithm
+simply searches blindly by finding all possible combinations then trying every combination one by one, which naturally
+takes a long time for a sudoku because of all the possible inputs.
+--AC3 search quickly solves the already solved and easy sudoku, but does not solve the harder ones. This is because of
+AC3's capabilities. AC3 can find a solution but it can also not find a solution. This is because its purpose is really
+to prune the data and shrink the size of each domain by testing each value in a domain against the constraints and
+removing it if it's not possible.
+--Backtracking search can solve the solved sudoku, and it can solve the easy one is less than 30 seconds, but the
+harder ones take too much time. The reason for this comes from its design. It's similar to a depth first graph search
+except it deletes any options that cannot lead to a solution. This makes it faster than the DFS (as seen in its
+sudoku abilities) but still requires a lot of time for bigger problems because it still has to try the many different
+possible combinations of the harder sudokus.
+--Min-conflicts search solves the solved sudoku but cannot solve the easy one. The idea behind the algorithm is that
+it randomly fills the blanks with values, then randomly chooses a variable that violates a constraint and assigns it
+the value that minimizes the number of conflicts. However, if there is a tie for number of conflicts it randomly
+chooses one of the options. This process can take many steps since a move that initially seems good can end up having
+more conflicts when other variables are changed. Therefore the algorithm terminates when it hits its max number of
+steps allowed.
+
+What effect does configuring the settings for backtracking have on the results? Try the following:
+Set the variable/value ordering (i.e., the select_unassigned_variable parameter) to first-unassigned-variable
+(the default) or minimum-remaining-values (i.e., mrv).
+Set the inference (i.e., the inference parameter) to forward-checking (i.e., forward_checking).
+Which, if any, of these settings should work best for sudoku? What combination of settings actually works the best?
+--Making both of these changes should work the best for sudoku because they both help the backtracking search by
+reducing the number of tangents it goes on for wrong solutions. However, when having the algorithm select the
+minimum-remaining value next instead of the first unassigned variable next, the search took multiple minutes to solve
+the easy sudoku instead of the original 30 seconds. Conversely, having the algorithm forward check before searching
+allows the algorithm to solve the easy sudoku immediately but struggled a bit with the harder one. Finally, when these
+modifications were combined the result was a fantastic beast of an algorithm that could immediately solve the so-called
+hardest algorithm.
+
+Exercise 3.2
+How large can n get for each of the algorithms? Why?
+-- Min-conflicts can solve 5000 Queens in about 20 seconds. It does this well because of the nature of the problem.
+The algorithm moves incorrect queens to a new position with the least amount of conflicts, and for this problem it's
+not unlikely that the algorithm drops a queen in a good position because if there is a queen in every general area of
+the board, there aren't too many bad spaces around it.
+-- AC3 fails for any number of queens. This is because the nature of AC3 isn't to necessarily solve the problem,
+but to narrow down the domains, or reduce the number of possible places that each queen can go.
+-- For backtracking (unmodified) the longest I was willing to wait was for 28 queens which took about 45 seconds. This
+algorithm is limited because it does a bunch of depth first searches which requires a lot of time due to the sheer number
+of combinations in this problem.
+
+What backtracking settings work the best? Why?
+-- Selecting the next variable to be the one with the minimum-remaining values did a bit better than the original,
+but wasn't consistent. It could solve for 100 queens in 10 seconds one time, but much longer the next time. Making
+the forward checking modification also helped a little bit by solving 28 queens in about 20 seconds compared to 45
+seconds. Combining these modifications led to the best result, yet still inconsistent. It could sometimes solve 200
+queens immediately, but other times I stopped it after a minute. The combination has the most potential to solve the
+most queens because the mrv allows the algorithm to detect and avoid a branch that will lead to failure, and the
+forward checking allows the algorithm to remove values from unassigned variable domains connected to a variable. Both
+of these avoid wasting time so that the algorithm can reach the solution faster.
+
+How many steps does Min-Conflicts require to do its work? Why?
+-- With a limit of 80 steps, min-conflicts can solve 8 queens about 50% of the time. This makes sense if we think about
+how min-conflicts works. Since it chooses a random conflicting variable to move (which is likely all of them to start),
+and doesn't find the perfect move for the solution but just the move with the least conflicts, this means it will cycle
+through choosing variables and slightly improving them until there are no conflicts. 80 moves gives an average of 10
+moves per queen, and with the cycling between variables and slightly improving each one every time, this number
+makes sense.
+
+Compare and contrast the specifications for CSP (i.e., csp.CSP) and traditional problems (i.e., search.Problem).
+Be sure to consider the nature of states, domains, actions, results and goal tests.
+-- The states for both types of problems are similar - where some or all of the variables are assigned values.
+ In this case each state is simply a board with some configuration of pieces on it.
+-- The domains for both types are similar in the sense that both of them have variables that have possible moves.
+However, the difference in that in a csp the domains can be specified for each variable, while a traditional cannot.
+-- Both types have a list of possible actions, however a csp only provides actions that are applicable and nonconflicting,
+while a traditional problem gives all possible actions with no regard for usefulness.
+-- Results are the same for both types - they both give the new state following an action.
+-- While both types of problems have a goal test that looks for a completed goal state to be satisfied, the traditional
+problem blindly chugs along until it finally finds this state, whereas a csp has a set of constraints so it can
+evaluate each state and determine how close it is to its goal and what it needs to satisfy to get there.
+
+Compare and contrast the nature of the heuristics deployed in traditional and constraint-based problem solving.
+-- In both cases heuristics help the algorithm reach the solution faster, and they do this by giving the algorithm
+part of a brain so it has a better idea of where to search. However, I think the heuristics for a csp are more effective.
+In a traditional search, a heuristic like A* or greedy is able to tell a given state how well it's sitting and how well
+it will be sitting if it takes one of the possible moves. Yet, it can't guarantee it won't lead you down a dead end.
+On the other hand, a csp heuristic like mrv or forward checking doesn't specifically give you a numerical value of
+how well you're sitting, but they have the ability to cut off entire branches that they know don't lead to the solution
+so you won't end up in a dead end.
