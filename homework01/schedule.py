@@ -31,15 +31,14 @@ def schedule():
     #             Ukranian: Tea; Japanese: Parliaments; Kools: Horse;
     #             Coffee: Green; Green: Ivory""", variables)
 
-    neighbors = {}
-    for type in ['cs108', 'cs112', 'cs212', 'cs214', 'cs262', 'cs344']:
-        for A in type:
-            for B in type:
-                if A != B:
-                    if B not in neighbors[A]:
-                        neighbors[A].append(B)
-                    if A not in neighbors[B]:
-                        neighbors[B].append(A)
+    neighbors = {'cs108': ['cs112', 'cs212', 'cs214', 'cs262', 'cs344'], 'cs112': ['cs108', 'cs212', 'cs214', 'cs262', 'cs344'], 'cs212': ['cs108', 'cs112', 'cs214', 'cs262', 'cs344'], 'cs214': ['cs108', 'cs112', 'cs212', 'cs262', 'cs344'], 'cs262': ['cs108', 'cs112', 'cs212', 'cs214', 'cs344'], 'cs344': ['cs108', 'cs112', 'cs212', 'cs214', 'cs262']}
+    # for A in ['cs108', 'cs112', 'cs212', 'cs214', 'cs262', 'cs344']:
+    #     for B in ['cs108', 'cs112', 'cs212', 'cs214', 'cs262', 'cs344']:
+    #         if A != B:
+    #              if B not in neighbors[A]:
+    #                 neighbors[A].append(B)
+    #              if A not in neighbors[B]:
+
 
 
 
@@ -50,8 +49,9 @@ def schedule():
         # each class cannot be offered more than once (more than one state)
         if A == B:
             return False
-        if a == b and A[0] == B[0]:
-            return
+        if A != B:
+            if a == b and A[0] == B[0]:
+                return
 
 
         if a == 'sb382' and b == 'sb382':
