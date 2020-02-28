@@ -7,7 +7,7 @@ It is based on the code from AIMA probability.py.
 @version Jan 1, 2013
 '''
 
-from probability import JointProbDist, enumerate_joint_ask, ProbDist
+from probability import JointProbDist, enumerate_joint_ask
 
 # The Joint Probability Distribution Fig. 13.3 (from AIMA Python)
 P = JointProbDist(['Toothache', 'Cavity', 'Catch'])
@@ -22,16 +22,23 @@ PC = enumerate_joint_ask('Cavity', {'Toothache': T}, P)
 print(PC.show_approx())
 
 #Compute P(Cavity|catch=T)
+"""
+This calculation was first done by hand so that the program solution could be confirmed.
+The equations and steps taken can be found on the submitted sheet under 1b. 
+"""
 PCc = enumerate_joint_ask('Cavity', {'Catch': T}, P)
 print(PCc.show_approx())
 
 # Probability distribution function for the flipping of 2 coins
-P2 = ProbDist(['coin1', 'coin2'])
+P2 = JointProbDist(['coin1', 'coin2'])
 # True = Heads, False = Tails
-T, F = True, False
-P[T, T] = 0.25; P[T, F] = 0.25
-P[F, T] = 0.25; P[F, F] = 0.25
+P2[T, T] = 0.25; P2[T, F] = 0.25
+P2[F, T] = 0.25; P2[F, F] = 0.25
 
 # Compute P(coin2|coin1=heads)
-P2 = enumerate_joint_ask('coin1', {'coin2': T}, P2)
-print(P2.show_approx())
+P2c = enumerate_joint_ask('coin1', {'coin2': T}, P2)
+print(P2c.show_approx())
+"""The result of this is 0.5, which makes sense because 2 coin flips are independent variables,
+so the result of the first coin flip should not influence the result of the second coin flip, and this proves that.
+This helps explain why the full joint probability distribution is not commonly used, because not all random variables
+that it includes influence each other, diminishing its usefulness."""
