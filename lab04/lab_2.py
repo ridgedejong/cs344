@@ -12,6 +12,7 @@ from probability import JointProbDist, enumerate_joint_ask
 """Edited: now includes a new random variable Rain which can take on values rain or not rain"""
 # The Joint Probability Distribution Fig. 13.3 (from AIMA Python)
 P = JointProbDist(['Toothache', 'Cavity', 'Catch', 'Rain'])
+
 """The full joint probability distribution now contains 16 entries instead of 8 because a new variable was introduced,
 so the initial entries exist for the possibility of rain and the possibility of not rain.
 These entries still add up to 1.0 because it still holds true that every possibility in this world must be a fraction
@@ -35,28 +36,18 @@ P[F, T, T, F] = 0.036; P[F, T, F, F] = 0.004
 P[T, F, T, F] = 0.008; P[T, F, F, F] = 0.032
 P[F, F, T, F] = 0.072; P[F, F, F, F] = 0.288
 
-# Compute P(Cavity|Toothache=T)  (see the text, page 493).
-PC = enumerate_joint_ask('Cavity', {'Toothache': T}, P)
-print(PC.show_approx())
-
-#Compute P(Cavity|catch=T)
+# Compute <P(Toothache|rain), P(-Toothache|rain), P(Toothache|-rain), P(-Toothache|-rain)>
 """
-This calculation was first done by hand so that the program solution could be confirmed.
-The equations and steps taken can be found on the submitted sheet under 1b. 
+Hand calculations were also done to test the accuracy of the program.
+These calculations can be found on the sheet turned in.
 """
-PCc = enumerate_joint_ask('Cavity', {'Catch': T}, P)
-print(PCc.show_approx())
+print('With Rain:')
+print('False = -Toothache; True = Toothache')
+PC1 = enumerate_joint_ask('Toothache', {'Rain': T}, P)
+print(PC1.show_approx())
+print('\nWithout Rain:')
+print('False = -Toothache; True = Toothache')
+PC2 = enumerate_joint_ask('Toothache', {'Rain': F}, P)
+print(PC2.show_approx())
 
-# Probability distribution function for the flipping of 2 coins
-P2 = JointProbDist(['coin1', 'coin2'])
-# True = Heads, False = Tails
-P2[T, T] = 0.25; P2[T, F] = 0.25
-P2[F, T] = 0.25; P2[F, F] = 0.25
 
-# Compute P(coin2|coin1=heads)
-P2c = enumerate_joint_ask('coin1', {'coin2': T}, P2)
-print(P2c.show_approx())
-"""The result of this is 0.5, which makes sense because 2 coin flips are independent variables,
-so the result of the first coin flip should not influence the result of the second coin flip, and this proves that.
-This helps explain why the full joint probability distribution is not commonly used, because not all random variables
-that it includes influence each other, diminishing its usefulness."""
