@@ -41,13 +41,10 @@ P[F, F, T, F] = 0.072; P[F, F, F, F] = 0.288
 Hand calculations were also done to test the accuracy of the program.
 These calculations can be found on the sheet turned in.
 """
-print('With Rain:')
+print('Given Rain:')
 print('False = -Toothache; True = Toothache')
 PC1 = enumerate_joint_ask('Toothache', {'Rain': T}, P)
 print(PC1.show_approx())
-print('\nWithout Rain:')
-print('False = -Toothache; True = Toothache')
-PC2 = enumerate_joint_ask('Toothache', {'Rain': F}, P)
-print(PC2.show_approx())
+
 
 

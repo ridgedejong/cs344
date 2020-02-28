@@ -18,6 +18,8 @@ P[T, F, T] = 0.016; P[T, F, F] = 0.064
 P[F, F, T] = 0.144; P[F, F, F] = 0.576
 
 # Compute P(Cavity|Toothache=T)  (see the text, page 493).
+print('\nGiven Toothache')
+print('False = -Cavity; True = Cavity')
 PC = enumerate_joint_ask('Cavity', {'Toothache': T}, P)
 print(PC.show_approx())
 
@@ -26,8 +28,10 @@ print(PC.show_approx())
 This calculation was first done by hand so that the program solution could be confirmed.
 The equations and steps taken can be found on the submitted sheet under 1b. 
 """
-PCc = enumerate_joint_ask('Cavity', {'Catch': T}, P)
-print(PCc.show_approx())
+print('\nGiven Catch')
+print('False = -Cavity; True = Cavity')
+PC1 = enumerate_joint_ask('Cavity', {'Catch': T}, P)
+print(PC1.show_approx())
 
 # Probability distribution function for the flipping of 2 coins
 P2 = JointProbDist(['coin1', 'coin2'])
@@ -36,6 +40,7 @@ P2[T, T] = 0.25; P2[T, F] = 0.25
 P2[F, T] = 0.25; P2[F, F] = 0.25
 
 # Compute P(coin2|coin1=heads)
+print('\nFlipping coin2 as Heads')
 P2c = enumerate_joint_ask('coin1', {'coin2': T}, P2)
 print(P2c.show_approx())
 """The result of this is 0.5, which makes sense because 2 coin flips are independent variables,
