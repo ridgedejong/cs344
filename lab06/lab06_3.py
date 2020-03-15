@@ -26,5 +26,4 @@ def print_structures():
         )
     )
 
-
 print_structures()
