@@ -1,0 +1,53 @@
+No Partners
+
+Exercise 1
+We want the ML model to determine whether an email in Gmail is important or not.
+
+Exercise 2
+Our ideal outcome is to save the user the time of skimming through emails to find important ones, as well as
+make the important emails easier to access to reduce the probability of missing an important email.
+
+Exercise 3
+Our success metrics are that the model has a 90% accuracy of determining which emails are important to the user.
+Additionally, this model must not determine an email important that is not important to the user. What the user
+considers important is measured by how often that email is clicked first.
+The key results for the success metrics are which emails the model determines to be important for the user.
+Our ML model is deemed a failure if the user clicks a regular email before an important email more than 75% of
+the time the user opens their email.
+
+Exercise 4
+The output from our ML model will be a probability.
+The output is defined as the probability that an email in a user's inbox is clicked first.
+
+Exercise 5
+The output from the ML model will be made every time a new email enters the user's inbox.
+The outcome will be used for determining which emails to mark as important.
+
+Exercise 6
+If we didn't use ML, we would manually compute the probability that an email is important based on who the email
+was sent from (person or business) and how many people the email was sent to.
+
+Exercise 7a
+Our problem is best framed as Binary Classification which predicts whether an email is important or not.
+
+Exercise 7b
+Problem is already Binary Classification.
+
+Exercise 8
+Input1:Sender | Input2:Number of Recipients | Prediction
+John Smith | 1 | Important
+Google | 1 | Not important
+Nike | 100+ | Not important
+
+
+Exercise 9
+Input1: Model determines if sender address is a person or business (or anything else)
+Input2: Model reads recipient line and determines if there is more than 1
+
+Exercise 10
+Both Input1 and Input2 could be used in a heuristic, where each input had a number associated with each of its possible
+values so that an overall probability that an email is important could be computed.
+More data examples should be added to avoid a biased model.
+
+
+
