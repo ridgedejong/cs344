@@ -1,0 +1,15 @@
+Exercise 7.2
+
+a. Categorical data is textual, meaning it has words that places it into a defined category.
+Numerical data is a number that is treated like a number, so it is not part of a category but rather has an important
+value.
+b.
+    1. The best hyper-parameter values I found were learning_rate=0.0001, steps=500, batch_size=3, which yielded a final
+    RMSE of 170.16 (before looking at their solution).
+    2. The best hyper-parameter values I found for population were learning_rate=0.00001, steps=800, batch_size=4,
+    which yielded a final RMSE of 196.67 (before looking at their solution).
+c. The hyper-parameters are learning rate, steps, and batch size. The learning rate is a scalar that is multiplied by
+the gradient vector to move to a new location (hopefully closer). Steps is the number of steps that you take
+during each period. The batch size is the size of each batch, which is a dataset constructed from the data. There is
+no standard way to tune these parameters. They must be found by experimentally testing the data because the effects of
+different hyper-parameters are data dependent.

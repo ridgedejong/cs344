@@ -1,0 +1,22 @@
+Exercise 7.3
+
+a.
+    1. The synthetic feature for block density could be created with the equation:
+    california_housing_dataframe["rooms_per_person"] = (california_housing_dataframe["total_rooms"] / california_housing_dataframe["population"])
+    By only adjusting the learning rate, the best RMSE I could get was 237.49 with a learning rate of 0.00001. This
+    is not very good correlation.
+    2. A scatter plot of the predictions vs. the targets could be graphed with the following code:
+    plt.figure(figsize=(10, 10))
+    plt.subplot(1, 1, 1)
+    plt.scatter(calibration_data["predictions"], calibration_data["targets"])
+    This shows that there are some outliers in the predictions that are too far to the right, which don't line up with
+    the vertical line on the left side.
+    3. By setting the maximum value of the rooms_per_person to 4 with code:
+    california_housing_dataframe["rooms_per_person"] = california_housing_dataframe["rooms_per_person"].apply(lambda x: max(x, 4))
+    the major outliers were removed, causing the RMSE to drop significantly to 125.25.
+b. Synthetic features are important because they allow you to test the correlation with variables that would otherwise
+be difficult or impossible to collect. This creates opportunities for synthetic features to make better predictions
+than any individual feature, all without having to collect any extra data.
+c. An outlier is a data point that is located relatively far away from the majority of data points in a dataset. They
+are usually excluded when the data is analyzed so that they don't unfairly skew the results. Otherwise, a prediction
+would take these values into account and most likely end up further from the target value.

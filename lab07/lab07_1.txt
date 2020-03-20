@@ -1,0 +1,12 @@
+Exercise 7.1
+
+a.
+    1. cities["Named after Saint & Area greater than 50 sq mi"] = (cities["City name"].apply(lambda name: name.startswith('San')) & (cities['Area square miles'] > 50))
+       cities
+    2. cities.reindex([0,3,1,2])
+b. Pandas allows you to have different data types for each column instead of each array like Numpy, creating much
+more flexibility and opportunity for whatever array you might need.
+c. It would be useful to shuffle a Pandas dataframe if this data needed to be split into training and testing sets.
+By shuffling before splitting, it would reduce the chance that you accidentally put all of one type of data in the
+training set and all of another type of data in the test set.
+
