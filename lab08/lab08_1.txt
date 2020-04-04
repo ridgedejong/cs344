@@ -1,0 +1,26 @@
+Exercise 8.1
+
+a.
+1. In the training set data, one issue is that median_income is between 0.5 and 15, but we have no idea what the units
+of these values are. Also, rooms_per_person has a 0 value which makes no sense for a house, and also a 55.2 value
+which is suspiciously high. In the validation set, there are the same issues with median_income and rooms_per_person,
+but it's also suspicious that the minimum number of rooms in all 5000 houses is 8, which seems too big to be a minimum
+of such a large sample.
+2. It appears that the data was sorted by longitude before being sorted, because the training set ranges from -114.3
+to -121.4, then the validation set picks up where this leaves off, ranging from -121.4 to -124.3. This lack of
+randomness will lead to misalignment between the training and validation sets, so the validation won't be as
+accurate of a test.
+3. np.random.permutation was commented out, meaning the data wasn't randomized before being split into training and
+validation sets. Once this was uncommented, the training set and validation set looked much more similar.
+4. The hyperparameters of the linear regressor were tweaked to get the lowest RMSE between the training and validation
+sets. The best selected values were learning_rate = 0.00001, steps = 1000, and batch = 8, yielding a final RMSE = 165.54.
+5. The final RMSE on the test data was 161.25, which is only slightly smaller than the RMSE found on the validation
+set. Since these values are so close (and could be closer if hyperparameters were tweaked more carefully), it shows
+that our model has a good generalization performance and that it is not too overfit on the validation set.
+b.
+A dataset is split into a big chunk as a training set where a model is trained on, and into a smaller chunk as a
+validation set that this created model is tested on. It is very important that the data is randomized before being
+split into these chunks so that there are not certain patterns that throw off the accuracy of the validation set as a
+test. It is also beneficial to use multiple features in the created model to improve its accuracy and effectiveness.
+Once this model is trained, it can be used on the test data set to make sure that the model is not overfit on the
+specific validation set, but rather is general enough to accurately apply to bigger data.

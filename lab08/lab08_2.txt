@@ -1,0 +1,30 @@
+Exercise 8.2
+
+a. The Pearson correlation coefficient measures the linear correlation between two variables X and Y, and has a value
+between 1 (positive linear correlation) and -1 (negative linear correlation). In the correlation table, every variable
+versus itself yields a coefficient of 1.0 which makes sense because they are exactly the same so they should have
+perfect correlation. Another example is that the correlation between housing_median_age and latitude is 0.0, and
+between housing_median_age and longitude is -0.1. These values make sense because there should be little if not no
+correlation between where a house is built and how long ago it was built because houses are constantly being built on
+all coordinates.
+b.
+1. The chosen features had strong correlations with the target and weak correlations between each other for independence.
+The code added was: minimal_features = ["median_income","latitude","rooms_per_person"]. When combined with the
+hyperparameters of learning_rate = 0.001, steps = 1000, and batch = 8, the resulting RMSE between the training and
+validation sets was 123.11. This was not as good as Google's baseline which yielded a RMSE of 114.10.
+2. The synthetic feature used was to bucketize the latitude data with the code:
+    def select_and_transform_features(source_df):
+      LATITUDE_RANGES = zip(range(32, 44), range(33, 45))
+      selected_examples = pd.DataFrame()
+      selected_examples["median_income"] = source_df["median_income"]
+      for r in LATITUDE_RANGES:
+        selected_examples["latitude_%d_to_%d" % r] = source_df["latitude"].apply(
+          lambda l: 1.0 if l >= r[0] and l < r[1] else 0.0)
+      return selected_examples
+    selected_training_examples = select_and_transform_features(training_examples)
+    selected_validation_examples = select_and_transform_features(validation_examples)
+This code checked the latitude data and put a 1 into the bucket with which each latitude fell, allowing the latitude
+data to be used more effectively. The hyperparameters of this model were set to learning_rate = 0.001, steps = 1000,
+and batch = 8, yielding a final RMSE of 140.88. This was actually better than Google's baseline which yielded a RMSE
+of 140.96.
+

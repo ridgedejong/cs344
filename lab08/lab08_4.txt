@@ -1,0 +1,24 @@
+Exercise 8.4
+
+a. The K-fold validation introduced a more reliable way of evaluating the model on the validation set. Since it splits
+the data into partitions and makes multiple evaluations, we are able to average these scores to create a metric that
+is better than any single score. In this example, the K-fold validation saved us from getting a 2100 or 2900 score,
+and gave us a reliable 2400.
+b. It's not good for feature data to have wildly different ranges because it throws off the model learning. When
+performing the linear regression, features with large ranges would have much more influence than those with smaller
+ranges. Therefore, the ranges need to be normalized so that each feature has equal importance during training.
+c. I agree. I think it's important for smaller data sets to have smaller networks. This is because a smaller network
+will do a better job of not overfitting the small amount of data. If a large network was used, there would be more
+weights that would have to be tuned to the data. The result of this would be a more specific fit which would not
+perform well on other data sets.
+d. Different networks were tested to see if they gave a better mean absolute error than the suggested network:
+Wider (100 units for each layer): mae = 2.4-2.8, similar to the suggested network. This makes sense because even
+though there are more weights, the small number of hidden layers keeps the model from getting too overfit, hurting
+its accuracy.
+Narrower (20 units for each layer): mae = 2.8-3.0, slightly worse than the suggested network. This makes sense
+because the smaller number of weights will naturally reduce the model's ability to accurately fit the data.
+1 Hidden layer: mae = 2.8-2.9, slightly worse than the suggested network. This makes sense because with only 1 hidden
+layer, the model is unable of making as many fine tuning adjustments, therefore lowering its accuracy.
+3 Hidden layers: mae = 2.3-2.6, slightly better than the suggested network. This makes sense because the additional
+layer allows the model to fine tune itself to the data better. However, if more layers were used, it would reach a
+point where the mae got larger due to the model getting overfit.
