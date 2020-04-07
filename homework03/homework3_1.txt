@@ -1,0 +1,14 @@
+Entropy(Restaurant) = -[(6/12)lg(6/12) + (6/12)lg(6/12)]
+Entropy(Restaurant) = 1.0
+
+Remainder(Price?) = (7/12)Entropy($) + (2/12)Entropy($$) + (3/12)Entropy($$$)
+Remainder(Price?) = -(7/12)[(4/7)lg(4/7) + (3/7)lg(3/7)] + -(2/12)[(0/2)lg(0/2) + (2/2)lg(2/2)] + -(3/12)[(2/3)lg(2/3) + (1/3)lg(1/3)]
+Remainder(Price?) = 0.804
+
+Gain(Price?) = Entropy(Restaurant) - Remainder(Price?)
+Gain(Price?) = 1.0 - 0.804
+Gain(Price?) = 0.196
+
+Asking the Price question is better than asking the Type question but worse than asking the Patron question because
+of the information Gain that each of them produce. The Price question yields a Gain of 0.196, while the Type question
+yields a Gain of 0 and the Patron question yields a Gain of 0.54.
