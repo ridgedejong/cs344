@@ -1,0 +1,15 @@
+Exercise 9.1
+
+a. Linear regression doesn't do a great job on this problem. It ends with a 0.44 RMSE which is high because the values
+range from 0 to 1. Also, the graph of this RMSE compared to the training model shows that the validation RMSE curve is
+similar but not very close to the training RMSE curve.
+b. L2 loss simply sums the squares of the differences between the actual and predicted values. In this case, the output
+of the L2 loss is interpreted as a probability between 0 and 1. The problem with this is that L2 loss doesn't penalize
+its misclassifications very harshly. Conversely, LogLoss involves a more complicated summation using the actual values
+and logs of predicted values. The result of this is that it penalizes the confidence errors more heavily.
+c. In this case, the L2 loss may seem to be more effective because the overall RMSE was 0.44, while the overall Logloss
+was 0.53. However, the loss curves say otherwise. Even though the LogLoss had a higher overall value, its graph
+shows that it is closer and its shape much better resembles the training data than the RMSE curve.
+d. Best Hyperparameters: learning_rate = 0.00001, steps = 5000, batch_size = 200
+AUC: 0.80
+Accuracy: 0.79
