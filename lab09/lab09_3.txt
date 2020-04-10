@@ -1,0 +1,30 @@
+Exercise 9.3
+
+The first experiment performed was using a model with 3 hidden layers instead of 2. The result of this was that the
+training and validation accuracy and loss plots stayed almost identical with only a few a different points, and the
+accuracy of the model after 3 epochs increased slightly by 0.3%. This is likely because the model continued to overfit
+the data. Along with this experiment, 1 hidden layer was also tested.
+The result of this was a slight increase from using 2 hidden layers. The training and validation accuracy plot
+remained the same, while the validation loss plot showed a slight change in slope making it closer to the training
+loss. The accuracy after 3 epochs also increased from 87.9% to 88.7%. This increase is because the reduction in layers
+allowed the model to be more generalized, therefore not overfitting the data as much.
+
+The second experiment was attempting to use 64 hidden units instead of 16. This resulted in bigger spikes in the
+validation accuracy and loss plots, as well as a decreased accuracy of 87.0% after 3 epochs. The decreased accuracy
+is because the model was already overfitting the data, so adding more weights only makes the problem worse.
+Additionally, 8 hidden units was also attempted.
+The result of this was smoother but still the same shape of validation accuracy and loss
+plots. The accuracy after 3 epochs increased to 88.6%, increasing because the fewer weights allowed it to be more
+generalized.
+
+The third experiment was to use the mse loss function instead of binary_crossentropy. This results in the validation
+accuracy graph staying the same, while the accuracy loss graph has a decresed slope, making it more similar to the
+training loss. The accuracy after 3 epochs had minimal change at 88.1%. It is surprising that mse does as well as
+binary_crossentropy because it is usually used for regression instead of classification. When used in classification,
+mse doesn't punish misclassifications enough and doesn't work the best with the nonlinear sigmoid.
+
+The final experiment was to use the tanh activation function for the hidden layers in place of relu. This had little
+change on the validation accuracy and loss, but for the training accuracy and loss it caused the data to become
+horizontal quicker and bounce around instead of following a smooth curve. This did not change the accuracy after 3
+epochs, but remained at 88.0%. The effect on the training data could be due to tanh's vanishing gradient problem as
+the data approaches the activation function's asymptotes.
