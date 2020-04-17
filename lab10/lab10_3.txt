@@ -1,0 +1,13 @@
+Exercise 10.3
+
+a. The confusion matrix shows that the model is doing a good job at predicting what the actual value is, however it
+also shows where the model mislabels things. The 3 highest probabilities of it mislabelling something is predicting a 9
+when given a 4, predicting an 8 when given a 5, and predicting a 3 when given a 5.
+
+b. The Tensorflow network architecture uses 2 hidden layers, each with 100 units. In comparison, our Keras network
+from class used 1 hidden layer with 512 units. By setting the hyperparameters to learning_rate = 0.05, steps = 5000,
+and batch_size = 100, I was able to get an accuracy on the test data of 0.96.
+
+c. The visualizations for 10 steps are all pixelated with no form of pattern at all. However, after 1000 steps these
+visualizations start to show clearer patterns with darker spots in some areas and lighter spots in others. Some even
+resemble pieces of a number.

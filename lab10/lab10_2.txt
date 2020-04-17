@@ -1,0 +1,15 @@
+Exercise 10.2
+
+a. AdaGrad boosts performance by modifying the learning rate for each coefficient in the model, making an overall
+lower effective learning rate. By decreasing the learning rate for frequent parameters and vice versa, the model is
+able to save time because only the important parameters are worked hard instead of all parameters.
+b.
+1. My best hyperparameters were learning_rate = 0.001, steps = 3000, batch_size = 100, and hidden_units = [10,10]. This
+yielded a final RMSE of the training data = 96.04 and final RMSE of the validation data = 93.25.
+2. With the hyperparameters learning_rate = 0.5, steps = 800, batch_size = 200, and hidden_units = [10,10], AdaGrad
+was able to end with a a final RMSE of the training data = 69.14 and final RMSE of the validation data = 66.27.
+With the hyperparameters learning_rate = 0.009, steps = 500, batch_size = 100, and hidden_units = [10,10], Adam
+was able to end with a a final RMSE of the training data = 71.49 and final RMSE of the validation data = 68.65.
+3. Using the normalization functions recommended by Google and the hyperparameters learning_rate = 0.2, steps = 8000,
+batch_size = 80, and hidden_units = [10,10], AdaGrad was able to end with a a final RMSE of the training data = 63.96
+and final RMSE of the validation data = 62.35.

@@ -1,0 +1,17 @@
+Exercise 10.4
+
+a.
+i. The size of the cats and dogs data sets are each 1000 training images and 500 testing images. All of these images
+have the shape 150x150 each with 3 color channels R,G,B.
+
+ii. The first CNN is very similar to the one built in class, with only small differences. The first small difference
+is that this CNN has a 3rd maxpooling after the 3rd conv2D before 2 fully connected layers, whereas our CNN did not
+have this and went straight from the 3rd conv2D to the 2 fully connected layers. Another difference is that this CNN
+applies the convolution filters 16, 32, and 64, whereas our CNN applied the filters 32, 32, and 64. Also, this CNN
+uses fully connected layers with 512 and 1 units, while our CNN used these layers with 64 and 10 units. Lastly, this
+CNN uses the sigmoid activation function on the output later while our CNN used the softmax function.
+
+iii. It's interesting that at the beginning of the process there are recognizable images, but by the time you get to
+the bottom it's almost all teal with spots of yellow and basically no recognizable images. It is also interesting
+that when either the input or maxpooling inputs to conv2D everything may shrink but stays aligned. However, when the
+conv2D inputs to maxpooling it is both shrunk and misaligned.
