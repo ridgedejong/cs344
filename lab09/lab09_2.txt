@@ -7,4 +7,5 @@ b. L1 regularization increases sparsity because it makes some features 0 while s
 It does this based on the L1 formula, where the absolute value involved causes some constant value to be subtracted
 from the weight every time. This also means L1 has discontinuity at 0, so any subtraction results that cross 0 are
 zeroed out.
-c.
+c. We had to make the regularization strength 0.8 before the model satisfied the restraints of model size < 600 and
+LogLoss < 0.35. The final results were model size = 583 and LogLoss = 0.25.

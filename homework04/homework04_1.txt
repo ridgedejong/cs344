@@ -1,0 +1,17 @@
+Deep neural networks have been a major breakthrough in the world of computer science. These networks have allowed
+amazing discoveries to occur with image and audio processing, as well as other interesting topics. However, while
+deep learning is all the rage these days, I don't think it will stay that way. I think it will stick around and be
+used when necessary, but I don't think that in 10 years every single data operation will involve deep learning, and
+there are a couple reasons why I believe this.
+
+My first reason for believing this is because of the complexity involved in setting up a deep neural network. The
+network needs to have the right number of layers and hyperparameters, and fine tuning these details can take a lot of
+effort (and therefore money) which isn't attractive to a lot of companies. Even if a company sets up a deep neural
+network, they still have to train this network which is my next reason. Training these networks can take multiple
+weeks and require a ton of processing power. Whereas if the company sticks with a traditional machine learning model
+they can quickly run it on a laptop. My final reason involves the applicability of deep neural networks. In a lot of
+business problems, basic machine learning works just fine because the company has access to high quality business data.
+Therefore, it would be overkill to apply deep learning to these situations. Rather, deep neural networks will have a
+bigger influence in the areas of lower quality data like images and audio. So, I think deep neural networks will be
+used in the future, but rather than being on the top of the mountain I think they will be used alongside of machine
+learning.
