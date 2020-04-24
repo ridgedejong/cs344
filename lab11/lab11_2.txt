@@ -1,0 +1,18 @@
+Exercise 11.2
+
+a. Men make up more than two-thirds of the data points, indicating bias in the data selection. Other bias comes from the
+fact that white people make up almost all of the data, even though the United States is very diverse.
+
+b. The Facets Dive shows that while married-civ-spouse is the biggest category, there are 5 times more men in this group
+than women, indicating data collection bias against married women.
+
+c. Some bias could come from that fact that only working people are included in this data. Bias definitely comes from
+the fact that more men are included than women, even though the US is about 1:1. Capital gain / capital loss doesn't
+vary a lot so it doesn't give much information. Age varies quite a bit so it should be bucketized to convey more
+information and avoid overfitting.
+
+d. When looking at the evaluation metrics of race, there are disparities that skew towards Asian-Pac-Islander and
+White having the highest precision and recall. However, Asian-Pac-Islander also has the highest false positive rate and
+White has the second highest. Amer-Indian-Eskimo and Black both have a slightly lower precision and a bit lower recall.
+Other has a precision similar to the first 2 but by far the worst recall. But these last 3 have much lower false
+positive rates than the first 2.

@@ -1,0 +1,21 @@
+Exercise 11.1
+
+a. A linear model would be preferable if there was not a lot of data for the model. With small amounts of data a deep
+NN could be overfit and end up as a worse solution than if a linear model was used. Another benefit to linear models
+is that they train much quicker than DNNs because they have much less parameters and layers to deal with.
+
+b. The NN model has a much better accuracy on the test set (0.88 vs 0.7852) and a much better average loss (0.3446 vs
+0.4513), while the linear model has a slightly better precision than the NN (0.773 vs 0.75). So, overall I would say
+the NN does a better job.
+
+c. The embedding column doesn't do much good for the sentiment analysis. It makes the DNN worse and is similar to the
+linear model. With embeddings the DNN has an accuracy of 0.7798, an average loss of 0.4574, and a precision of 0.777.
+
+d. "fantastic" and "perfect" occur very close to each other in the embedding space. This makes sense because they are
+both words that mean very good, so they can be used interchangeably in a sentence with almost the exact same meaning.
+In the context of this data, it makes sense that if someone really loved a movie, they could use either one of these
+words to describe how they felt about it.
+
+e. I could not design a model that was better than Google's solution. The best I could do was the hyperparameters of
+learning_rate = 0.12, clip_gradients_by_norm(my_optimizer, 2.0), and a hidden layer structure of [12,10]. This yielded
+an accuracy of 0.7897, an average loss of 0.4500, and a precision of 0.762.
